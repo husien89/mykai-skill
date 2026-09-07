@@ -1,3 +1,78 @@
+// =====================================================
+// ✅ 1️⃣ ضع الكود الجديد هنا في البداية — قبل كل شيء
+// =====================================================
+
+// === تحميل بيانات الأسماء السورية من ملف CSV خارجي ===
+async function loadSyrianNamesCSV() {
+    try {
+        const csvUrl = 'https://raw.githubusercontent.com/philipperemy/name-dataset/main/data/SY.csv';
+        
+        const response = await fetch(csvUrl);
+        if (!response.ok) throw new Error('فشل تحميل الملف');
+        
+        const csvText = await response.text();
+        const lines = csvText.split('\n');
+        
+        const importedNames = [];
+        
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',');
+            if (values.length < 2) continue;
+            
+            importedNames.push({
+                id: Date.now() + i,
+                firstName: values[0]?.trim() || '',
+                fatherName: '',
+                lastName: values[1]?.trim() || '',
+                fullName: `${values[0]?.trim() || ''} ${values[1]?.trim() || ''}`.trim(),
+                nationalNumber: '',
+                idCard: '',
+                birthDate: '',
+                address: '',
+                phone: '',
+                taxNumber: '',
+                nationality: 'سوري',
+                gender: values[2] === 'M' ? 'ذكر' : values[2] === 'F' ? 'أنثى' : ''
+            });
+            
+            if (importedNames.length >= 5000) break;
+        }
+        
+        window.importedNames = importedNames;
+        console.log(`✅ تم تحميل ${importedNames.length} اسم سوري`);
+        return importedNames;
+        
+    } catch (error) {
+        console.log('⚠️ تعذر تحميل الملف الخارجي، استخدم البيانات المحلية');
+        return [];
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadSyrianNamesCSV().then(names => {
+        if (names.length > 0 && typeof database !== 'undefined') {
+            database.push(...names);
+            console.log(`✅ إجمالي البيانات: ${database.length} سجل`);
+        }
+    });
+});
+
+// =====================================================
+// ✅ 2️⃣ باقي الكود الأصلي يأتي هنا في الأسفل
+// =====================================================
+
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+const results = document.getElementById('results');
+const qrBtn = document.getElementById('qrBtn');
+const qrScanner = document.getElementById('qrScanner');
+const closeScanner = document.getElementById('closeScanner');
+const qrVideo = document.getElementById('qrVideo');
+const csvInput = document.getElementById('csvInput');
+const exportAllCsv = document.getElementById('exportAllCsv');
+
+// === باقي الدوال والكود الأصلي هنا ===
+
 /**
  * 📂 قاعدة البيانات — نظام البحث والتحقق السوري
  * الإصدار: 2.1.0 | التحديث: 7 أيلول 2026
