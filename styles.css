@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+.search-box button {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.qr-btn {
+    background: #6f42c1;
+    color: white;
+    font-size: 20px;
+}
+
+#searchBtn {
+    background: #28a745;
+    color: white;
+}
+
+.import-export {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.import-btn, .export-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+}
+
+.import-btn {
+    background: #17a2b8;
+    color: white;
+}
+
+.export-btn {
+    background: #fd7e14;
+    color: white;
+}
+
+.qr-scanner {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.scanner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #e74c3c;
+}
+
+#qrVideo {
+    width: 100%;
+    border-radius: 10px;
+    background: #000;
+}
+
+.scanner-hint {
+    text-align: center;
+    color: #666;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.results {
+    width: 100%;
+}
+
+.empty-state, .no-result {
+    background: white;
+    padding: 40px 25px;
+    text-align: center;
+    border-radius: 12px;
+    color: #666;
+    line-height: 1.8;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: fadeIn 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    color: #28a745;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 15px;
+}
+
+.row span:first-child {
+    color: #555;
+    font-weight: 500;
+}
+
+.row strong {
+    color: #1e3c72;
+}
+
+.qr-placeholder {
+    text-align: center;
+    margin: 20px 0 10px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.actions button {
+    flex: 1;
+    min-width: 100px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.actions button:nth-child(1) { background: #e9ecef; color: #333; }
+.actions button:nth-child(2) { background: #6f42c1; color: white; }
+.actions button:nth-child(3) { background: #dc3545; color: white; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+    .row { flex-direction: column; gap: 4px; }
+    .search-box { flex-direction: column; }
+    .actions { flex-direction: column; }
+}
+
+@media print {
+    .search-box, .actions, .import-export, header p, .qr-btn, #qrBtn { display: none !important; }
+    .card { box-shadow: none !important; }
+}
